@@ -7,6 +7,7 @@ test.describe("Hillel auto first test", () => {
     const repeatPasswordInput = page.locator('input[name="repeatPassword"]');
     const randomUser = Math.floor(Math.random() * 1000);
     const email = `random_user${randomUser}@test.com`;
+    const waitIconUserProfile = page.locator("#userNavDropdown");
     await page.goto("https://guest:welcome2qauto@qauto.forstudy.space/");
     await page.locator("button.btn-primary").click();
     await page.locator("#signupName").fill("Max");
@@ -19,5 +20,6 @@ test.describe("Hillel auto first test", () => {
     await repeatPasswordInput.fill("Qwerty1234");
     await expect(repeatPasswordInput).toHaveValue("Qwerty1234");
     await page.locator("button", { hasText: "Register" }).click();
+    await waitIconUserProfile.waitFor({ state: 'visible' });
   });
 });
